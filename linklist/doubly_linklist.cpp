@@ -35,30 +35,56 @@ Node* removetail(Node* head){
   return head;
 }
 Node* removek(Node* head , int k ){
-    if(head->next==nullptr) delete head;
-  int current=1;
-  Node* temp = head;
-  while (temp)
-  {
-   if(k==current){
-    break;
-   }
-   temp=temp->next;
-   k++;
-  }
-  temp->back->next =temp->next;
-  temp->next->back = temp->back;
-  delete temp
-
-
-  return head;
-}
-void traversell(Node* head){
     Node* temp = head;
-    while(temp){
-        cout << temp->data << " ";
-        temp= temp->next;
+    int current = 0;
+   while ( temp != nullptr ){
+       if(current==k){
+           break;
+            
+       }
+       temp = temp->next ;
+       current ++;
+   }
+   if(temp==nullptr) return NULL;
+   Node* before = temp->back;
+   Node* after = temp->next;
+    if(before==nullptr && after==nullptr){
+       cout<<"In";
+   delete temp;
+   return NULL;
+   }
+   if(before==nullptr){
+       after->back = nullptr;
+       temp->next =nullptr;
+       delete temp;
+       return after;
+   }
+     if(after==nullptr){
+       before->next = nullptr;
+       temp->back =nullptr;
+       delete temp;
+       return head;
+   }
+  
+   before->next = after;
+   after -> back = before;
+   delete temp;
+   return head;
+   
+  
+}
+void traverseDoublyList(Node* head) {
+    if (!head) {
+        cout << "List is empty\n";
+        return;
     }
+
+    Node* temp = head;
+    while (temp) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl;
 }
 Node* convertarr2ll(vector<int> &arr){
     Node* head = new Node(arr[0]);
@@ -71,9 +97,10 @@ Node* convertarr2ll(vector<int> &arr){
     }
     return head;
 }int main(){
+    
     vector<int> arr = {1,2,3,4,5,6};
     Node* head = convertarr2ll(arr);
-    Node* headreal = removetail(head);
-    traversell(head);
+    Node* headreal = removek(head , 7);
+    traverseDoublyList(headreal);
  
 }

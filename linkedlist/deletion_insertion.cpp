@@ -4,7 +4,6 @@ using namespace std;
 class Node {
     public:
     int data;
-    
     Node* next;
     public:
     Node(int data1 , Node* next1){
@@ -42,8 +41,6 @@ Node* removeHead(Node* head){
     return head;
 }
 Node* removeelement(Node* head , int k){
-
-    
     if(head->data==k){
       Node*  temp = head;
       head = temp->next;
@@ -137,7 +134,7 @@ Node* removetail(Node* head){
 int main(){
     vector<int> arr = {1,2,3,4,5,6};
     Node* head = convertarr2ll(arr);
-    head =addkthelement(head ,3 , 55);
+    head =removeelement(head ,3 );
     traversell(head);
  
 }
