@@ -43,7 +43,7 @@ Node* removeHead(Node* head){
 }
 Node* removeelement(Node* head , int k){
 
-    
+    cout<<head;
     if(head->data==k){
       Node*  temp = head;
       head = temp->next;
